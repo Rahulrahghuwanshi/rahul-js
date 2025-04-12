@@ -1,0 +1,75 @@
+<div class="profile-page page-width">
+  <div class="profile_child">
+    {% for profile in section.blocks %}
+      <div class="align_profile">
+        <div class="color_profile" style="background-color:{{profile.settings.color_accent}}">
+          <p style="{{ profile.settings.body_text }}">hello</p>
+        </div>
+        <div class="profile_image">
+          <img src="{{ profile.settings.profile_image | img_url:'70x'}}">
+          <p>{{ profile.settings.profile_text }}</p>
+        </div>
+        <p class="lower_text">{{ profile.settings.profile_bio }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": [],
+  "blocks":[{
+    "name":"add section",
+    "type":"text",
+    "settings":[
+ {
+  "type": "color",
+  "id": "color_accent",
+  "label": "Buttons color",
+  "default": "#FFFFFF"
+},
+    {
+      "type":"image_picker",
+      "id":"profile_image",
+      "label":"enter image"
+    },
+    {
+      "type":"text",
+      "id":"profile_text",
+      "label":"enter text"
+    },
+       {
+      "type":"text",
+      "id":"profile_bio",
+      "label":"enter text"
+      }]
+  }],
+  "presets":[{"name":"profile page"}]
+}
+{% endschema %}
+<style>
+  .profile-page {
+    margin-bottom: 50px;
+  }
+    .profile_child {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      gap: 20px;
+  }
+  .align_profile {
+        box-shadow: 2px 1px 11px 4px #ddd;
+  }
+  .profile_image {
+    text-align: center;
+  }
+  .color_profile p {
+    margin: 0px;
+    padding: 20px;
+  }
+  .lower_text {
+    margin: 0px;
+    text-align: center;
+    padding: 0px 20px;
+  }
+</style>

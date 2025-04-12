@@ -1,0 +1,104 @@
+<div class="slider_schema">
+  <div class="row_schema1">
+    {% for block in section.blocks %}
+      <div class="child-new_schema2">
+        <img src="{{ block.settings.image | img_url: "" }}" alt="{{ block.settings.text2 }}">
+        <h1>{{ block.settings.text2 }}</h1>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Add Data",
+      "type": "text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Add your image"
+        },
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "Enter your text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "banner"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .slider_schema {
+    width: 100%;
+
+    justify-content: center;
+    text-align: center;
+  }
+
+  .child-new_schema2 {
+    position: relative;
+  }
+  .row1{
+    width: 100%;
+    height: 320px;
+  }
+
+  .child-new_schema2 h3 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: aliceblue;
+    left: 37%;
+    top: 75%;
+    margin: 0;
+    font-size: 25px;
+  }
+
+  .child-new_schema2 img {
+
+    border: 1px solid white;
+    border-radius: 20px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  img{
+    width:100%;
+    height:400px;
+  }
+</style>
+<script>
+  $('.row_schema1').slick({
+    dots: true,
+    infinite: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    autoplay: true,
+    arrows:false,
+  });
+</script>
+
+{% stylesheet %}
+{% endstylesheet %}

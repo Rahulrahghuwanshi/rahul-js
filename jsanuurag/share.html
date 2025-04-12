@@ -1,0 +1,186 @@
+ <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Share Button</title>
+    <style>
+       
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            position: relative;
+        }
+        
+        #share-btn {
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        #share-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        #share-options {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;  /* Initially Hidden */
+            flex-direction: column;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        
+        .visible {
+            display: flex !important;
+        }
+        
+        .share-option {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .share-option:hover {
+            background-color: #d6d6d6;
+        }
+        #alert-message {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        display: none; /* Initially hidden */
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    </style>
+    </head>
+    <body>
+
+        <div class="container">
+            <button id="share-btn">
+                <svg id="share-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3V16M12 3L7 7M12 3L17 7M4 10V20H20V10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div id="share-options">
+                <button onclick="shareTo('facebook')" class="share-option">Facebook</button>
+                <button onclick="shareTo('whatsapp')" class="share-option">WhatsApp</button>
+                <button onclick="shareTo('linkedin')" class="share-option">LinkedIn</button>
+                <button onclick="shareTo('copy')" class="share-option">Copy Link</button>
+                
+            </div>
+        </div>
+
+        <script>
+            const shareBtn = document.getElementById('share-btn');
+            const shareOptions = document.getElementById('share-options');
+            const shareIcon = document.getElementById('share-icon');
+            
+            let isOpen = false;
+            
+            shareBtn.addEventListener('click', () => {
+                isOpen = !isOpen;
+                
+                if (isOpen) {
+                    shareOptions.classList.add('visible');
+                    shareIcon.innerHTML = `<path d="M6 6L18 18M6 18L18 6" stroke="black" stroke-width="2" stroke-linecap="round"/>`;
+                } else {
+                    shareOptions.classList.remove('visible');
+                    shareIcon.innerHTML = `<path d="M12 3V16M12 3L7 7M12 3L17 7M4 10V20H20V10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!shareBtn.contains(e.target) && !shareOptions.contains(e.target)) {
+                    isOpen = false;
+                    shareOptions.classList.remove('visible');
+                    shareIcon.innerHTML = `<path d="M12 3V16M12 3L7 7M12 3L17 7M4 10V20H20V10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+                }
+            });
+
+            function shareTo(platform) {
+                const pageUrl = window.location.href;
+                let shareUrl = "";
+                if (platform === "facebook") {
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+                } else if (platform === "whatsapp") {
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(pageUrl)}`;
+                } else if (platform === "linkedin") {
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+                } else if (platform === "copy") {
+                    copyToClipboard(pageUrl);
+                    return;
+                }
+
+                if (shareUrl) {
+                    window.open(shareUrl, "_blank");
+                }
+                console.log(pageUrl,"pageUrl>>")
+                console.log(shareUrl,"shareUrl>>")
+            }
+
+            // function copyToClipboard(text) {
+            //     navigator.clipboard.writeText(text).then(() => {
+            //         alert("✅ Link copied to clipboard!");
+            //     }).catch(err => {
+            //         console.error("Error copying text: ", err);
+            //     });
+            // }
+            function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const alertBox = document.createElement("div");
+            alertBox.id = "alert-message";
+            alertBox.innerText = "✅ Product URL copied!";
+            document.body.appendChild(alertBox);
+            
+            alertBox.style.display = "block";
+
+            setTimeout(() => {
+                alertBox.style.opacity = "0";
+                setTimeout(() => {
+                    alertBox.remove();
+                }, 500);
+            }, 2000);
+        }).catch(err => {
+            console.error("Error copying text: ", err);
+        });
+    }
+
+        </script>
+    </body>
+    </html> 
+
+    
+     
+    

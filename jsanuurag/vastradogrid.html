@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shirt Size Table</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .toggle {
+            display: inline-block;
+            margin: 10px;
+            font-size: 20px;
+        }
+        .toggle span {
+            cursor: pointer;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+        .active {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Shirt</h2>
+    <div class="toggle">
+        <span id="cmBtn" class="active" onclick="switchUnit('cm')">CM</span> | 
+        <span id="inchBtn" onclick="switchUnit('inch')">INCHES</span>
+    </div>
+    <table id="sizeTable">
+        <thead>
+            <tr>
+                <th>Size</th>
+                <th>Standard Size</th>
+                <th>Across Shoulder Full Sleeve</th>
+                <th>Across Shoulder Short Sleeve</th>
+                <th>Chest Long Sleeve</th>
+                <th>Chest Short Sleeve</th>
+                <th>Front Length Full Sleeve</th>
+                <th>Front Length Short Sleeve</th>
+                <th>Sleeve Length Long Sleeve</th>
+                <th>Sleeve Length Short Sleeve</th>
+                <th>To Fit Waist Full Sleeve</th>
+                <th>To Fit Waist Short Sleeve</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <script>
+        const cmData = [
+            ["XS", 91.4, 41.9, 45, 99.1, 106, 72.9, 68.6, 63, 25.9, 87.9, 103],
+            ["S", 96.5, 43.9, 47, 104, 111, 74.9, 70.6, 64, 26.9, 94, 108],
+            ["M", 102, 47, 50, 109, 116, 77, 72.4, 65, 27.9, 100, 113],
+            ["L", 107, 48.5, 51.6, 115, 122, 78, 73.4, 65, 29, 106, 119],
+            ["XL", 112, 50.5, 53.6, 121, 128, 79, 74.4, 66, 30, 118, 127],
+            ["XXL", 117, 52.6, 55.6, 129, 136, 79, 74.4, 66, 30.5, 124, 133],
+            ["3XL", 122, 55.9, 58.9, 138, 144, 83.1, 78.5, 67.1, 31.5, 136, 144],
+            ["4XL", 127, 59.4, 62.5, 147, 153, 84.1, 79.5, 68.1, 32.5, 146, 154]
+        ];
+        
+        const inchData = [
+            ["XS", 36, 16.5, 17.7, 39, 41.7, 28.7, 27, 24.8, 10.2, 34.6, 40.6],
+            ["S", 38, 17.3, 18.5, 40.9, 43.7, 29.5, 27.8, 25.2, 10.6, 37, 42.5],
+            ["M", 40, 18.5, 19.7, 42.9, 45.7, 30.3, 28.5, 25.6, 11, 39.4, 44.5],
+            ["L", 42, 19.1, 20.3, 45.3, 48, 30.7, 28.9, 25.6, 11.4, 41.7, 46.9],
+            ["XL", 44, 19.9, 21.1, 47.6, 50.4, 31.1, 29.3, 26, 11.8, 46.5, 50],
+            ["XXL", 46, 20.7, 21.9, 50.8, 53.5, 31.1, 29.3, 26, 12, 48.8, 52.4],
+            ["3XL", 48, 22, 23.2, 54.3, 56.7, 32.7, 30.9, 26.4, 12.4, 53.5, 56.7],
+            ["4XL", 50, 23.4, 24.6, 57.9, 60.2, 33.1, 31.3, 26.8, 12.8, 57.5, 60.6]
+        ];
+        
+        let isCm = true;
+        
+        function populateTable(data) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+            data.forEach(row => {
+                const tr = document.createElement("tr");
+                row.forEach(cell => {
+                    const td = document.createElement("td");
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                tableBody.appendChild(tr);
+            });
+        }
+        
+        function switchUnit(unit) {
+            isCm = unit === 'cm';
+            document.getElementById("cmBtn").classList.toggle("active", isCm);
+            document.getElementById("inchBtn").classList.toggle("active", !isCm);
+            populateTable(isCm ? cmData : inchData);
+        }
+        
+        populateTable(cmData);
+    </script>
+</body>
+</html>

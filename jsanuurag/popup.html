@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+ 	<html lang="en">
+ 	<head>
+ 	<meta charset="UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<title>Document</title>
+ 	<style>
+ 	#popupid {
+ 	display: none;
+ 	position: fixed;
+ 	transform: translate(-50%, -50%);
+ 	left: 50%;
+ 	top: 50%;
+ 	background-color: white;
+ 	padding: 20px;
+ 	border-radius: 10px;
+ 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+ 	z-index: 1000;
+ 	text-align: center;
+ 	}
+ 	#close {
+ 	position: fixed;
+ 	transform: translate(-50%, -50%);
+ 	top: -8%;
+ 	right: -17%;
+ 	cursor: pointer;
+ 	}
+ 	#overlay {
+ 	display: none;
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	height: 100%;
+ 	background: rgba(0, 0, 0, 0.5);
+ 	z-index: 999;
+ 	}
+ 	</style>
+ 	</head>
+ 	<body>
+ 	<button type="button" onclick="myfunction()">Click Button</button>
+ 	<div id="overlay" onclick="closefun()"></div>
+ 	<div id="popupid">
+ 	<h1>Hiii raghuwanshi ji </h1>
+ 	<p>HI raghuwanshi ji  How are you</p>
+ 	<p id="close" onclick="closefun()"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40" height="40" viewBox="0 0 256 256" xml:space="preserve">
+ 	 
+ 	<defs>
+ 	</defs>
+ 	<g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+ 	<circle cx="45" cy="45" r="45" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(230,62,50); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+ 	<path d="M 27.169 64.83 c -0.512 0 -1.024 -0.195 -1.414 -0.586 c -0.781 -0.781 -0.781 -2.047 0 -2.828 l 35.661 -35.661 c 0.781 -0.781 2.047 -0.781 2.828 0 c 0.781 0.781 0.781 2.047 0 2.828 L 28.583 64.244 C 28.193 64.635 27.681 64.83 27.169 64.83 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+ 	<path d="M 62.83 64.83 c -0.512 0 -1.023 -0.195 -1.414 -0.586 L 25.755 28.583 c -0.781 -0.781 -0.781 -2.047 0 -2.828 c 0.78 -0.781 2.048 -0.781 2.828 0 l 35.661 35.661 c 0.781 0.781 0.781 2.047 0 2.828 C 63.854 64.635 63.342 64.83 62.83 64.83 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+ 	</g>
+ 	</svg></p>
+ 	</div>
+ 	<script>
+ 	function myfunction()
+ 	{
+ 	document.getElementById("popupid").style.display="block";
+ 	document.getElementById("overlay").style.display = "block";
+ 	}
+ 	function closefun()
+ 	{
+ 	document.getElementById("popupid").style.display="none";
+ 	document.getElementById("overlay").style.display = "none";
+ 	 
+ 	}
+ 	</script>
+ </body>
+ </html>

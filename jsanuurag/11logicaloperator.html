@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>logical operator  </h1>
+    <ul>
+        <li>||or : koi ek  condition true hona chaiye </li>
+        <li> && : dono condition true honi chaiye </li>
+        <li> !(Not) </li>
+    </ul>
+    <script>
+    const  userage = 18 ;
+    const iscollagestudent = (userage >= 18 ) && (userage <= 24 );
+    const isschoolstudent = (userage >= 5 ) && (userage <= 17); 
+
+    const isguy =  iscollagestudent || isschoolstudent // koi ek sahi hona chaiye 
+    const orresult = '' || "rahul" // '' falsy hoti isliye rahul aara
+    const newresult = "rahul" && null // null dega falsy he
+    const newresultt= "rahul" ||null // second pe jyga hi nhi pehle hi true mil gai he
+    const numstring =  "rahul" && 6+4 // 10 aayga output
+    const stringnum = "rahul" && 6+4 // 10 aaga
+    </script>
+</body>
+</html>

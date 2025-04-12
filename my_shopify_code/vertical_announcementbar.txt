@@ -1,0 +1,60 @@
+<div class="parent-new1">
+  <div class="row">
+    {% for block in section.blocks %}
+      <h3 class="align">{{ block.settings.text2 }}</h3>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Add Data",
+      "type": "text",
+      "settings": [
+
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "Enter your text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "new announcement"
+    }
+  ]
+}
+{% endschema %}
+<style>
+  .align{
+    text-align:center;
+    color:red;
+  }
+  .row{
+    background:pink;
+    width:100%;
+    height:40px;
+  }
+</style>
+<script>
+  $('.row').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    arrows:false,
+    infinite:true,
+    vertical:true,
+    autoplaySpeed: 4000,
+  });
+</script>
+
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}

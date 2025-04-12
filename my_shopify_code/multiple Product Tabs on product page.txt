@@ -1,0 +1,83 @@
+<div id="parent_head">
+  <div id="parent_head2">
+    <div class="head_button">
+      {% for new_accor in section.blocks %}
+        <h2 class="align_accor">{{ new_accor.settings.text_head1 }}</h2>
+      {% endfor %}
+    </div>
+    <div class="content_button">
+      {% for new_accor in section.blocks %}
+        <p class="text_head2">{{ new_accor.settings.text_head2 }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": [],
+  "blocks": [
+  {
+    "name": "accordian per click",
+    "type": "text_head",
+    "settings": [
+
+      {
+        "type": "text",
+        "id": "text_head1",
+        "label": "Enter your text"
+      },
+      {
+         "type": "text",
+        "id": "text_head2",
+        "label": "Enter your text"
+
+
+      }
+]
+  }
+  ],
+
+
+
+"presets": [
+  {
+    "name": "hidden data"
+  }
+]}
+{% endschema %}
+<style>
+    .text_head2{
+        display: none;
+    }
+    .head_button{
+      display:flex;
+          gap: 20%;
+        margin-left: 10%;
+    }
+    .content_button{
+      width: 80%;
+      margin-left: 5%;
+      border: 1px solid grey;
+  }
+    }
+</style>
+
+<script>
+     document.addEventListener("DOMContentLoaded", function() {
+       let test = document.querySelectorAll('.align_accor');
+       let test2 = document.querySelectorAll('.text_head2');
+
+       test.forEach((align_data, index) => {
+         align_data.addEventListener("click", () => {
+
+
+           test2.forEach((align_data1)=>{
+                    align_data1.style.display = 'none';
+             });
+  test2[index].style.display = 'block';
+           });
+   });
+         });
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tab Section</title>
+    <style>
+   
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+    }
+    
+    
+    .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .tab-button {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        background: #ddd;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+    
+    .tab-button.active {
+        background: #007bff;
+        color: white;
+    }
+    
+    
+    .tab-content {
+        display: none;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        max-width: 500px;
+        margin: auto;
+        background: #f9f9f9;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
+    
+    
+    @media (max-width: 600px) {
+        .tabs {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <div class="tabs">
+        <button class="tab-button active" data-tab="tab1">Tab 1</button>
+        <button class="tab-button" data-tab="tab2">Tab 2</button>
+        <button class="tab-button" data-tab="tab3">Tab 3</button>
+    </div>
+
+    <div class="tab-content active" id="tab1">
+        <h2>Tab 1 Content</h2>
+        <p>This is the content for Tab 1.</p>
+    </div>
+    <div class="tab-content" id="tab2">
+        <h2>Tab 2 Content</h2>
+        <p>This is the content for Tab 2.</p>
+    </div>
+    <div class="tab-content" id="tab3">
+        <h2>Tab 3 Content</h2>
+        <p>This is the content for Tab 3.</p>
+    </div>
+
+    <script >
+     document.addEventListener("DOMContentLoaded", function () {
+    var buttons = document.querySelectorAll(".tab-button");
+
+    buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            document.querySelector(".tab-button.active")?.classList.remove("active");
+            document.querySelector(".tab-content.active")?.classList.remove("active");
+
+            this.classList.add("active");
+            document.getElementById(this.dataset.tab).classList.add("active");
+        });
+    });
+});
+
+ </script>
+</body>
+</html>

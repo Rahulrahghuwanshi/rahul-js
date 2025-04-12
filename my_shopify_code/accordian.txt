@@ -1,0 +1,89 @@
+<div class="parent_accordion">
+  <div class="child_accordion">
+    {% for accor in section.blocks %}
+      <div>
+        <div class="acco_title">
+          <h1 class="acco_tn" data-tab="{{ forloop.index }}">{{ accor.settings.accordian }}</h1>
+        </div>
+        <div class="panel">
+          <p class="panelContent" data-tab="{{ forloop.index }}">
+            <b>{{ accor.settings.input_acc }}</b>
+          </p>
+        </div>
+      </div>
+      <hr>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+ {
+   "name": "Section name",
+   "settings": [],
+   "blocks":[{
+   "name":"add section",
+   "type":"text",
+   "settings":[
+{
+ "type": "text",
+ "id": "accordian",
+ "label": "input_accordian"
+},
+   {
+     "type":"text",
+     "id":"input_acc",
+     "label":"input text"
+   }]
+   }],
+      "presets":[
+        {
+          "name":"accordian"
+        }
+      ]
+
+ }
+{% endschema %}
+
+<style>
+  .panelContent {
+    display: none;
+  }
+
+  .parent_accordion {
+    padding: 30px 10% 0px 200px;
+    width: 100%;
+    background: white;
+  }
+
+  .child_accordion {
+    width: 80%;
+  }
+
+  .acco_tn {
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.4s;
+    font-family: Tahoma, Verdana, sans-serif;
+  }
+</style>
+
+<script>
+    document.querySelectorAll(".acco_tn").forEach((item) => {
+    let tab = item.getAttribute("data-tab");
+    item.addEventListener("click", () => {
+      document.querySelectorAll(".panelContent").forEach((element) => {
+        let panelTab = element.getAttribute("data-tab");
+
+        if (tab === panelTab) {
+          if (element.style.display === "none") {
+            element.style.display = "block";
+          } else {
+            element.style.display = "none";
+          }
+        } else {
+          element.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
